@@ -105,7 +105,7 @@ def main():
         print("Invalid input for prediction days. Please enter a valid integer.")
         return
 
-    # Determine the date range for the past 3 years
+    # Determine the date range for the past 5 years
     end_date = datetime.now()
     start_date = end_date - timedelta(days=365 * 5)
     
