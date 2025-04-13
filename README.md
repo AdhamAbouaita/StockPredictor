@@ -1,43 +1,37 @@
-# StockPredictor
+# Stock Price Forecasting and Technical Analysis
+
+This project provides two Python applications that forecast stock prices using the [Prophet](https://facebook.github.io/prophet/) time series forecasting tool and visualize the results using [Plotly](https://plotly.com/python/). In addition, one of the applications incorporates technical indicators (MACD and RSI) and market sentiment data from Yahoo Finance for an enhanced prediction model.
 
 ## Overview
-StockPredictor is a machine learning project for forecasting stock prices using advanced algorithms. It leverages Facebook Prophet for time series forecasting and enhances predictions by integrating technical indicators such as MACD and RSI, complemented by market sentiment analysis from Yahoo Finance.
+
+The repository contains two main scripts:
+
+- **app(default).py**  
+  Downloads historical stock data from Yahoo Finance, prepares the data for Prophet, trains a forecasting model, and generates an interactive Plotly chart showing both the historical prices and the forecasted values.
+
+- **app(indicators).py**  
+  Enhances the default model by incorporating technical indicators (MACD and RSI) and market sentiment data. This version also downloads data from Yahoo Finance, computes technical indicators, adds them as extra regressors to the Prophet model, and outputs an interactive Plotly chart with forecasted results.
 
 ## Features
-- **Prophet Forecasting:** Robust time series predictions with Facebook Prophet.
-- **Technical Indicators:** Utilize MACD and RSI to capture market trends and momentum.
-- **Market Sentiment:** Enrich analysis with sentiment data from Yahoo Finance.
-- **Dual Application Scripts:**  
-    - app(default).py: Implements forecasting using only Prophet.  
-    - app(indicators).py: Combines prophet with technical indicators and market sentiment for enhanced predictions.
-- **Visualization:** Generate interactive charts to explore prediction trends and historical performance.
 
-## Installation
-1. Ensure you have Python 3.7 or above.
-2. Clone the repository
-3. Install the required dependencies:
-        ```
-        pip install -r requirements.txt
-        ```
+- **Historical Data Download:** Uses the `yfinance` library to fetch historical stock prices.
+- **Forecasting with Prophet:** Leverages the Prophet model with daily, weekly, and yearly seasonality for time series forecasting.
+- **Interactive Visualizations:** Generates interactive line charts with Plotly that include confidence intervals.
+- **Technical Indicators (in `app(indicators).py`):** Computes MACD and RSI for additional market insights.
+- **Market Sentiment Analysis (in `app(indicators).py`):** Integrates a sentiment score from Yahoo Finance to enhance the forecasting model.
+- **User Input:** Prompts the user to enter a stock symbol and the number of days for future predictions.
 
-## Usage
-Choose your preferred approach:
-- For Prophet-only forecasting:
-        ```
-        python app(default).py
-        ```
-- For enhanced forecasting with technical indicators and market sentiment:
-        ```
-        python app(indicators).py
-        ```
+## Requirements
 
-Ensure your dataset is prepared and placed in the appropriate directory before running the scripts.
+Make sure you have the following Python packages installed:
 
-## Contributing
-Contributions are welcome! Please fork the repository and submit a pull request. For major changes, kindly open an issue first to discuss potential modifications.
+- [pandas](https://pandas.pydata.org/)
+- [yfinance](https://pypi.org/project/yfinance/)
+- [prophet](https://pypi.org/project/prophet/)
+- [plotly](https://plotly.com/python/)
+- [numpy](https://numpy.org/) (required for indicators in `app(indicators).py`)
 
-## License
-This project is open-sourced under the MIT License.
+You can install the necessary packages using pip:
 
-## Contact
-For any questions or suggestions, please open an issue or contact the maintainers via the repository.
+```bash
+pip install pandas yfinance prophet plotly numpy
