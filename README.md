@@ -1,5 +1,4 @@
 # StockPredictor
-# StockPredictor
 
 ## Overview
 StockPredictor is a machine learning project for forecasting stock prices using advanced algorithms. It leverages Facebook Prophet for time series forecasting and enhances predictions by integrating technical indicators such as MACD and RSI, complemented by market sentiment analysis from Yahoo Finance.
