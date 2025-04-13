@@ -10,7 +10,6 @@ StockPredictor is a machine learning project for forecasting stock prices using 
 - **Dual Application Scripts:**  
     - app(default).py: Implements forecasting using only Prophet.  
     - app(indicators).py: Combines prophet with technical indicators and market sentiment for enhanced predictions.
-- **Data Integration:** Import data from CSV files, online APIs, or direct database connections.
 - **Visualization:** Generate interactive charts to explore prediction trends and historical performance.
 
 ## Installation
@@ -20,7 +19,7 @@ StockPredictor is a machine learning project for forecasting stock prices using 
         ```
         pip install -r requirements.txt
         ```
-        
+
 ## Usage
 Choose your preferred approach:
 - For Prophet-only forecasting:
