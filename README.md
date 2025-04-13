@@ -15,10 +15,7 @@ StockPredictor is a machine learning project for forecasting stock prices using 
 
 ## Installation
 1. Ensure you have Python 3.7 or above.
-2. Clone the repository:
-        ```
-        git clone https://github.com/yourusername/StockPredictor.git
-        ```
+2. Clone the repository
 3. Install the required dependencies:
         ```
         pip install -r requirements.txt
