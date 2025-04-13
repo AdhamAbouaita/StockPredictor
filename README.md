@@ -20,8 +20,7 @@ StockPredictor is a machine learning project for forecasting stock prices using 
         ```
         pip install -r requirements.txt
         ```
-4. Configure your data source paths and API credentials within the configuration file (`config.yaml`).
-
+        
 ## Usage
 Choose your preferred approach:
 - For Prophet-only forecasting:
