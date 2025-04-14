@@ -1,4 +1,8 @@
 #!/usr/bin/env python3
+import warnings
+
+warnings.simplefilter("ignore")
+
 import pandas as pd
 import numpy as np
 import yfinance as yf
@@ -7,9 +11,7 @@ import plotly.graph_objects as go
 from datetime import datetime, timedelta
 import webbrowser
 import os
-import warnings
 
-warnings.simplefilter("ignore")
 
 def get_stock_data(symbol, start_date, end_date):
     """Download stock data from Yahoo Finance."""
