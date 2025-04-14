@@ -187,7 +187,7 @@ def main():
 
     # Decide on the historical date range (5 years)
     end_date = datetime.now()
-    start_date = end_date - timedelta(days=365 * 5)
+    start_date = end_date - timedelta(days=365 * 10)
 
     # Step 1: Download historical stock data
     try:

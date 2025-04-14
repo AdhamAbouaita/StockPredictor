@@ -1,37 +1,72 @@
-# Stock Price Forecasting and Technical Analysis
+# Stock Price Forecasting with Prophet, MACD, RSI & Market Sentiment
 
-This project provides two Python applications that forecast stock prices using the [Prophet](https://facebook.github.io/prophet/) time series forecasting tool and visualize the results using [Plotly](https://plotly.com/python/). In addition, one of the applications incorporates technical indicators (MACD and RSI) and market sentiment data from Yahoo Finance for an enhanced prediction model.
+This project provides a command-line tool for forecasting stock prices using [Facebook Prophet](https://facebook.github.io/prophet/), with additional signals from MACD, RSI, and Yahoo Finance-based market sentiment data.
 
-## Overview
+The model trains on historical price data and enhances predictions using technical indicators and sentiment analysis. The output is an interactive Plotly chart displaying the historical stock prices, forecasted prices, and confidence intervals.
 
-The repository contains two main scripts:
-
-- **app(default).py**  
-  Downloads historical stock data from Yahoo Finance, prepares the data for Prophet, trains a forecasting model, and generates an interactive Plotly chart showing both the historical prices and the forecasted values.
-
-- **app(indicators).py**  
-  Enhances the default model by incorporating technical indicators (MACD and RSI) and market sentiment data. This version also downloads data from Yahoo Finance, computes technical indicators, adds them as extra regressors to the Prophet model, and outputs an interactive Plotly chart with forecasted results.
+---
 
 ## Features
 
-- **Historical Data Download:** Uses the `yfinance` library to fetch historical stock prices.
-- **Forecasting with Prophet:** Leverages the Prophet model with daily, weekly, and yearly seasonality for time series forecasting.
-- **Interactive Visualizations:** Generates interactive line charts with Plotly that include confidence intervals.
-- **Technical Indicators (in `app(indicators).py`):** Computes MACD and RSI for additional market insights.
-- **Market Sentiment Analysis (in `app(indicators).py`):** Integrates a sentiment score from Yahoo Finance to enhance the forecasting model.
-- **User Input:** Prompts the user to enter a stock symbol and the number of days for future predictions.
+- 📈 Historical stock data retrieval from Yahoo Finance
+- 🔍 Market sentiment analysis using `recommendationMean`
+- 📊 MACD and RSI indicator calculation
+- 🤖 Time series forecasting using Prophet with extra regressors
+- 📉 Interactive forecast visualization with Plotly
+- 💾 Saves the forecast plot as an HTML file and auto-opens in your browser
+
+---
 
 ## Requirements
 
-Make sure you have the following Python packages installed:
-
-- [pandas](https://pandas.pydata.org/)
-- [yfinance](https://pypi.org/project/yfinance/)
-- [prophet](https://pypi.org/project/prophet/)
-- [plotly](https://plotly.com/python/)
-- [numpy](https://numpy.org/) (required for indicators in `app(indicators).py`)
-
-You can install the necessary packages using pip:
+Install the dependencies using:
 
 ```bash
-pip install pandas yfinance prophet plotly numpy
+pip install -r requirements.txt
+```
+
+---
+
+## Usage
+
+Run the script using:
+
+```bash
+python main.py
+```
+
+You will be prompted to:
+
+1. Enter a stock ticker symbol (e.g., `AAPL`, `GOOGL`, `MSFT`).
+2. Enter the number of future days to predict.
+
+Example:
+
+```
+Enter the stock symbol (e.g., AAPL, GOOGL): AAPL
+Enter number of days for Prophet prediction: 60
+```
+
+The script will:
+
+- Download 10 years of historical data for the given symbol.
+- Calculate MACD and RSI.
+- Retrieve market sentiment.
+- Train a Prophet model with these features as regressors.
+- Forecast future prices.
+- Display the forecast in your default web browser.
+
+The "noregressors.py" script is the same except it does not use any regressors (MACD, RSI, or market sentiment).
+---
+
+## Dependencies
+
+The script uses the following main libraries:
+
+- `pandas`
+- `numpy`
+- `yfinance`
+- `prophet`
+- `plotly`
+
+---
