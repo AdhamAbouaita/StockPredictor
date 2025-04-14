@@ -167,7 +167,7 @@ def create_plot(original_df, forecast, symbol):
     ))
     
     fig.update_layout(
-        title=f"{symbol.upper()} Stock Price Prediction with Technical Indicators",
+        title=f"{symbol.upper()} Stock Price Predictions",
         xaxis_title="Date",
         yaxis_title="Stock Price ($)",
         hovermode='x',

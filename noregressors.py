@@ -87,7 +87,7 @@ def create_plot(original_df, forecast, symbol):
     ))
     
     fig.update_layout(
-        title=f"{symbol.upper()} Stock Price Prediction",
+        title=f"{symbol.upper()} Stock Price Prediction Without Regressors",
         xaxis_title="Date",
         yaxis_title="Stock Price ($)",
         hovermode='x',
