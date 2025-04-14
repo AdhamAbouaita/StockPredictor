@@ -7,6 +7,9 @@ import plotly.graph_objects as go
 from datetime import datetime, timedelta
 import webbrowser
 import os
+import warnings
+
+warnings.simplefilter("ignore")
 
 def get_stock_data(symbol, start_date, end_date):
     """Download stock data from Yahoo Finance."""
