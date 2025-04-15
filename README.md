@@ -1,19 +1,12 @@
 # Stock Price Forecasting with Prophet, MACD, RSI & Market Sentiment
 
-This project provides a command-line tool for forecasting stock prices using [Facebook Prophet](https://facebook.github.io/prophet/), with additional signals from MACD, RSI, and Yahoo Finance-based market sentiment data.
-
-The model trains on historical price data and enhances predictions using technical indicators and sentiment analysis. The output is an interactive Plotly chart displaying the historical stock prices, forecasted prices, and confidence intervals.
-
----
+This Python script downloads historical stock data from Yahoo Finance, trains a forecasting model using Facebook's Prophet, and generates an interactive HTML plot of the forecast.
 
 ## Features
 
-- 📈 Historical stock data retrieval from Yahoo Finance
-- 🔍 Market sentiment analysis using `recommendationMean`
-- 📊 MACD and RSI indicator calculation
-- 🤖 Time series forecasting using Prophet with extra regressors
-- 📉 Interactive forecast visualization with Plotly
-- 💾 Saves the forecast plot as an HTML file and auto-opens in your browser
+- **Historical Data:** Downloads stock data based on a user-specified number of years.
+- **Forecasting:** Uses Prophet to predict future stock prices over a user-defined number of days.
+- **Visualization:** Creates an interactive forecast plot with Plotly and opens it in your default web browser.
 
 ---
 
