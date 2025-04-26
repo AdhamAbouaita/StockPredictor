@@ -7,7 +7,6 @@ import pandas as pd
 import yfinance as yf
 from prophet import Prophet
 import plotly.graph_objects as go
-import plotly.io as pio  # ensure you have kaleido installed: pip install -U kaleido
 from datetime import datetime, timedelta
 import webbrowser
 
@@ -126,7 +125,7 @@ def main():
         print(e)
         return
 
-    # Prep for Prophet
+    # Prepare for Prophet
     prophet_df = prepare_data_for_prophet(stock_data)
     
     # Train & forecast
@@ -136,42 +135,26 @@ def main():
         print(f"Error during model training: {e}")
         return
 
-    # Get final forecast date
+    # Build title and filename slug
     last_date = forecast['ds'].max().date()
-    
-    # Build date strings
-    numeric_date = last_date.isoformat()  # for filenames
-    readable_date = f"{last_date.strftime('%B')} {last_date.day}, {last_date.year}"  # for chart title
-
-    # Chart title with month name
+    readable_date = f"{last_date.strftime('%B')} {last_date.day}, {last_date.year}"
     title_text = f"Forecast for {symbol}, {training_years} years of past data, until {readable_date}"
-    safe_name = slugify(f"Forecast for {symbol}, {training_years} years of past data, until {numeric_date}")
+    safe_name = slugify(f"{symbol}, {int(training_years)} years, until {readable_date}")
 
     # Generate the figure
     print("Generating the plot. Please wait...")
     fig = create_plot(prophet_df, forecast, title_text)
 
-    # Base charts folder on user's Desktop
+    # Save HTML into ~/Desktop/charts
     desktop = os.path.expanduser("~/Desktop")
-    charts_base = os.path.join(desktop, "charts")
-    images_dir = os.path.join(charts_base, "chartimages")
-    pages_dir = os.path.join(charts_base, "chartpages")
-    
-    # Ensure directories exist
-    os.makedirs(images_dir, exist_ok=True)
-    os.makedirs(pages_dir, exist_ok=True)
+    charts_dir = os.path.join(desktop, "charts")
+    os.makedirs(charts_dir, exist_ok=True)
 
-    # Save interactive HTML into 'chartpages'
-    output_html = os.path.join(pages_dir, f"{safe_name}.html")
+    output_html = os.path.join(charts_dir, f"{safe_name}.html")
     fig.write_html(output_html, full_html=True)
     print(f"Interactive plot saved to {output_html}.")
 
-    # Save static PNG via Kaleido into 'chartimages'
-    output_png = os.path.join(images_dir, f"{safe_name}.png")
-    fig.write_image(output_png, engine="kaleido")
-    print(f"Static image saved to {output_png}.")
-
-    # Open the interactive HTML
+    # Open the HTML file in the default browser
     webbrowser.open("file://" + os.path.abspath(output_html))
 
 if __name__ == "__main__":
