@@ -47,6 +47,8 @@ The script will:
 - Retrieve market sentiment.
 - Train a Prophet model with these features as regressors.
 - Forecast future prices.
+- Save the interactive chart html file in a folder called "chartpages".
+- Save the image of the chart as a .png in a folder called "chartimages".
 - Display the forecast in your default web browser.
 
 The "noregressors.py" script is the same except it does not use any regressors (MACD, RSI, or market sentiment).
@@ -61,5 +63,6 @@ The script uses the following main libraries:
 - `yfinance`
 - `prophet`
 - `plotly`
+- `kaleido`
 
 ---
