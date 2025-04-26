@@ -7,7 +7,7 @@ import pandas as pd
 import yfinance as yf
 from prophet import Prophet
 import plotly.graph_objects as go
-import plotly.io as pio  # make sure you have kaleido installed: pip install -U kaleido
+import plotly.io as pio  # ensure kaleido is installed: pip install -U kaleido
 from datetime import datetime, timedelta
 import webbrowser
 
@@ -136,12 +136,21 @@ def main():
         print(f"Error during model training: {e}")
         return
 
-    # Build title and safe filename
+    # Get the final forecast date
     last_date = forecast['ds'].max().date()
-    title_text = f"Forecast for {symbol}, {training_years} years of past data, until {last_date}"
-    safe_name = slugify(title_text)
+    
+    # Build two date strings:
+    # 1) numeric for filenames
+    numeric_date = last_date.isoformat()  # e.g. "2025-05-01"
+    # 2) human-readable for the chart title
+    readable_date = f"{last_date.strftime('%B')} {last_date.day}, {last_date.year}"  # e.g. "May 1, 2025"
 
-    # Generate plot
+    # Chart title uses the spelled-out month
+    title_text = f"Forecast for {symbol}, {training_years} years of past data, until {readable_date}"
+    # Filenames continue to use the numeric date
+    safe_name = slugify(f"Forecast for {symbol}, {training_years} years of past data, until {numeric_date}")
+
+    # Generate the figure
     print("Generating the plot. Please wait...")
     fig = create_plot(prophet_df, forecast, title_text)
 
