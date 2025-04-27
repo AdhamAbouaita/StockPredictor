@@ -1,4 +1,4 @@
-# Stock Price Forecasting with Prophet, MACD, RSI & Market Sentiment
+# Stock Price Forecasting with Prophet
 
 This Python script downloads historical stock data from Yahoo Finance, trains a forecasting model using Facebook's Prophet, and generates an interactive HTML plot of the forecast.
 
@@ -43,9 +43,6 @@ Enter number of days for Prophet prediction: 60
 The script will:
 
 - Download 10 years of historical data for the given symbol.
-- Calculate MACD and RSI.
-- Retrieve market sentiment.
-- Train a Prophet model with these features as regressors.
 - Forecast future prices.
 - Save the interactive charts as .html files into a folder on your desktop called "charts".
 - Display the forecast in your default web browser.
