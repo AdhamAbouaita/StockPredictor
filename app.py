@@ -222,8 +222,9 @@ def main():
 
             super().do_POST()
 
-    server = HTTPServer(('localhost', 8000), Handler)
-    url = 'http://localhost:8000/index.html'
+    port = int(os.environ.get('PORT', 8000))
+    server = HTTPServer(('0.0.0.0', port), Handler)
+    url = f'{port}/index.html'
     print(f"Serving charts at {url}")
     webbrowser.open(url)
     server.serve_forever()
