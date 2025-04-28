@@ -306,7 +306,7 @@ body {
 </style>
 """
 
-    # 5) JavaScript for delete + generate (retained functionality)
+    # 5) JavaScript for delete + generate
     script = """
 <script>
 function deleteChart(fname) {
@@ -344,7 +344,6 @@ document.getElementById('paramsForm').addEventListener('submit', function(e) {
 </script>
 """
 
-    # Combine into full HTML
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -373,6 +372,7 @@ def main():
 
     # Serve via HTTP
     os.chdir(charts_dir)
+
     class Handler(SimpleHTTPRequestHandler):
         def do_POST(self):
             if self.path == '/delete':
@@ -414,20 +414,27 @@ def main():
                         m, fc = train_prophet_model(df, days)
                         last = fc['ds'].max().date()
                         rd   = f"{last.strftime('%B')} {last.day}, {last.year}"
+
+                        # Unique filename base including timestamp
+                        timestamp = end.strftime('%Y%m%d%H%M%S')
+                        base = f"{sym}_{years:g}y_{days}d_until_{last.strftime('%Y%m%d')}_{timestamp}"
+                        html_fn = f"{base}.html"
+
                         title = (f"Forecast for {sym}, with {years:g} years of past data, "
                                  f"predicting {days} days into the future, until {rd}")
-                        html_fn = f"{sym}, until {rd}.html"
                         fig = create_plot(df, fc, title)
                         with open(html_fn, 'w', encoding='utf-8') as f:
                             f.write(fig.to_html(full_html=True))
+
                         manifest = {
                             'years': years,
                             'days': days,
                             'title': title,
                             'created': created
                         }
-                        with open(f"{sym}, until {rd}.json", 'w', encoding='utf-8') as f:
+                        with open(f"{base}.json", 'w', encoding='utf-8') as f:
                             json.dump(manifest, f)
+
                         print(f"Saved {html_fn}")
                     except Exception as e:
                         print(f"Skipping {sym}: {e}")
