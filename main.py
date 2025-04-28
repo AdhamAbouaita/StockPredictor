@@ -3,6 +3,7 @@ warnings.simplefilter("ignore")
 
 import re
 import os
+import glob
 import pandas as pd
 import yfinance as yf
 from prophet import Prophet
@@ -99,6 +100,55 @@ def create_plot(original_df, forecast, title_text):
     
     return fig
 
+def generate_index_page(charts_dir):
+    """Rebuild an index.html in charts_dir listing all chart files with their titles."""
+    pattern = os.path.join(charts_dir, "*.html")
+    all_html = sorted(glob.glob(pattern))
+    # Skip the index page itself if it exists
+    chart_files = [f for f in all_html if os.path.basename(f).lower() != "index.html"]
+
+    items = []
+    for filepath in chart_files:
+        try:
+            with open(filepath, 'r', encoding='utf-8') as f:
+                # extract the <title>…</title>
+                head = f.read().split("</head>", 1)[0]
+                m = re.search(r"<title>(.*?)</title>", head, re.IGNORECASE|re.DOTALL)
+                title = m.group(1).strip() if m else os.path.basename(filepath)
+        except Exception:
+            title = os.path.basename(filepath)
+        link = os.path.basename(filepath)
+        items.append(f'    <li><a href="{link}">{title}</a></li>')
+
+    index_html = """<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chart Index</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 40px; }
+    h1 { font-size: 2em; margin-bottom: 20px; }
+    ul { list-style-type: none; padding: 0; }
+    li { margin: 10px 0; }
+    a { color: #1a73e8; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <h1>All Saved Charts</h1>
+  <ul>
+%s
+  </ul>
+</body>
+</html>
+""" % "\n".join(items)
+
+    index_path = os.path.join(charts_dir, "index.html")
+    with open(index_path, "w", encoding="utf-8") as f:
+        f.write(index_html)
+    print(f"Index page written to {index_path}")
+    return index_path
+
 def main():
     # User input
     symbol = input("Enter the stock symbol (e.g., AAPL, GOOGL): ").upper().strip()
@@ -138,24 +188,29 @@ def main():
     # Build title and filename slug
     last_date = forecast['ds'].max().date()
     readable_date = f"{last_date.strftime('%B')} {last_date.day}, {last_date.year}"
-    title_text = f"Forecast for {symbol}, {training_years} years of past data, until {readable_date}"
-    safe_name = slugify(f"{symbol}, {int(training_years)} years, until {readable_date}")
+    title_text = f"Forecast for {symbol}, with {training_years} years of past data, until {readable_date}"
+    safe_name = slugify(f"Forecast for {symbol}, with {int(training_years)} years of past data, until {readable_date}")
 
     # Generate the figure
     print("Generating the plot. Please wait...")
     fig = create_plot(prophet_df, forecast, title_text)
 
-    # Save HTML into ~/Desktop/charts
+    # Prepare directories
     desktop = os.path.expanduser("~/Desktop")
     charts_dir = os.path.join(desktop, "charts")
     os.makedirs(charts_dir, exist_ok=True)
 
+    # Save individual chart
     output_html = os.path.join(charts_dir, f"{safe_name}.html")
     fig.write_html(output_html, full_html=True)
     print(f"Interactive plot saved to {output_html}.")
 
-    # Open the HTML file in the default browser
-    webbrowser.open("file://" + os.path.abspath(output_html))
+    # Rebuild the index.html
+    index_path = generate_index_page(charts_dir)
+
+    # Open the index page in the default browser
+    webbrowser.open("file://" + os.path.abspath(index_path))
+
 
 if __name__ == "__main__":
     main()
