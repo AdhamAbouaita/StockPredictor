@@ -1,5 +1,8 @@
 # Stock Price Forecasting with Prophet
 
+You can run this application via the web version, or you can run it locally. If you want to run it locally, 
+follow the instructions below, otherwise, here is the link to the web version: [Stock Predictor Web App](https://stockpredictor-l0iq.onrender.com)
+
 ## Requirements
 
 Make sure to create your own venv in order to properly and easily install all the libraries from requirements.txt!
