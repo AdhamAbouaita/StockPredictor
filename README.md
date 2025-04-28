@@ -12,6 +12,7 @@ This Python script downloads historical stock data from Yahoo Finance, trains a 
 
 ## Requirements
 
+Make sure to create your own venv in order to properly and easily install all the libraries from requirements.txt!
 Install the dependencies using:
 
 ```bash
@@ -47,7 +48,6 @@ The script will:
 - Save the interactive charts as .html files into a folder on your desktop called "charts".
 - Display the forecast in your default web browser.
 
-The "noregressors.py" script is the same except it does not use any regressors (MACD, RSI, or market sentiment).
 ---
 
 ## Dependencies
