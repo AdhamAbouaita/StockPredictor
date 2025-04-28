@@ -349,7 +349,7 @@ document.getElementById('paramsForm').addEventListener('submit', function(e) {
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>FuturoCharts</title>
+  <title>Stock Price Predictor</title>
   {css}
 </head>
 <body>
