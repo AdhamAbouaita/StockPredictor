@@ -109,7 +109,7 @@ def generate_index_page(charts_dir):
     # Animated gradient background container
     lines.append("<div id='bg'></div>")
     # Navbar
-    lines.append("<nav class='navbar'><div class='logo'>🚀 Adham's Stock Price Predictor 💵</div></nav>")
+    lines.append("<nav class='navbar'><div class='logo'>🚀 Stock Price Predictor 💵</div></nav>")
     # Main
     lines.append("<main class='container'>")
     # Forecast form
