@@ -1,7 +1,7 @@
 # Stock Price Forecasting with Prophet
 
 You can run this application via the web version, or you can run it locally. If you want to run it locally, 
-follow the instructions below, otherwise, here is the link to the web version: [Stock Predictor Web App](https://stockpredictor-l0iq.onrender.com)
+follow the instructions below, otherwise, here is the link to the web version: [Stock Predictor Web App](https://stockpredictor-l0iq.onrender.com).
 
 ## Requirements
 
@@ -16,13 +16,11 @@ pip install -r requirements.txt
 
 ## Usage
 
-Run the script using:
+Run the local version of the webb-app using:
 
 ```bash
-python main.py
+python local.py
 ```
-
-and prepare to get loaded!
 
 ---
 
