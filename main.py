@@ -109,7 +109,7 @@ def generate_index_page(charts_dir):
     # Animated gradient background container
     lines.append("<div id='bg'></div>")
     # Navbar
-    lines.append("<nav class='navbar'><div class='logo'>🚀 Get Loaded Quick 💵</div></nav>")
+    lines.append("<nav class='navbar'><div class='logo'>🚀 Adham's Stock Price Predictor 💵</div></nav>")
     # Main
     lines.append("<main class='container'>")
     # Forecast form
@@ -187,6 +187,7 @@ body {
   font-size:1.8rem; color: var(--accent);
   text-shadow: 0 0 10px var(--accent);
   animation: glowLogo 2s ease-in-out infinite alternate;
+  margin: 0 auto;
 }
 @keyframes glowLogo {
   from { text-shadow: 0 0 5px var(--accent); }
