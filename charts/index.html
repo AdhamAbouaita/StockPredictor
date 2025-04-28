@@ -166,14 +166,14 @@ body {
 </head>
 <body>
 <div id='bg'></div>
-<nav class='navbar'><div class='logo'>🚀 Adham's Stock Price Predictor 💵</div></nav>
+<nav class='navbar'><div class='logo'>🚀 Stock Price Predictor 💵</div></nav>
 <main class='container'>
 <section class='form-section'>
   <h2>New Forecast</h2>
   <form id='paramsForm'>
-    <div class='form-group'><label>Symbols<input type='text' name='symbols' placeholder='AAPL, MSFT...' required></label></div>
-    <div class='form-group'><label>Years<input type='number' step='0.1' name='years' required></label></div>
-    <div class='form-group'><label>Days<input type='number' name='days' required></label></div>
+    <div class='form-group'><label>Symbols, separated by commas<input type='text' name='symbols' placeholder='AAPL, MSFT...' required></label></div>
+    <div class='form-group'><label>Years of Past Data to train with    <input type='number' step='0.1' name='years' required></label></div>
+    <div class='form-group'><label>Days into the future to forecast    <input type='number' name='days' required></label></div>
     <button class='btn btn-primary' type='submit'>Generate</button>
   </form>
 </section>
