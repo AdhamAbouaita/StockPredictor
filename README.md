@@ -29,10 +29,10 @@ server = HTTPServer(('localhost', 8000), Handler)
 url = 'http://localhost:8000/index.html'
 ```
 
-Run the local version of the webb-app using:
+Then proceed to start the web app locally using:
 
 ```bash
-python local.py
+python app.py
 ```
 
 ---
