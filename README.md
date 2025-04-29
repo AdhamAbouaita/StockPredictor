@@ -21,9 +21,6 @@ Delete/comment the following segment of the code towards the very bottom:
 port = int(os.environ.get('PORT', 8000))
 server = HTTPServer(('0.0.0.0', port), Handler)
 url = f'{port}/index.html'
-print(f"Serving charts at {url}")
-webbrowser.open(url)
-server.serve_forever()
 ```
 
 and uncomment this segment of code right after it:
