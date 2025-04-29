@@ -31,7 +31,7 @@ def train_prophet_model(df, periods):
     model = Prophet(
         daily_seasonality=False,
         yearly_seasonality=True,
-        weekly_seasonality=False,
+        weekly_seasonality=True,
         changepoint_prior_scale=0.05
     )
     model.fit(df)
