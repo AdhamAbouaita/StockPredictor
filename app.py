@@ -222,10 +222,17 @@ def main():
 
             super().do_POST()
 
+    # comment out or delete the following three lines to run locally
     port = int(os.environ.get('PORT', 8000))
     server = HTTPServer(('0.0.0.0', port), Handler)
     url = f'{port}/index.html'
-    print(f"Serving charts at {url}")
+
+    # and then uncomment the following lines to run locally
+    '''
+    server = HTTPServer(('localhost', 8000), Handler)
+    url = 'http://localhost:8000/index.html'
+    '''
+
     webbrowser.open(url)
     server.serve_forever()
 

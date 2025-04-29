@@ -16,6 +16,21 @@ pip install -r requirements.txt
 
 ## Usage
 
+Delete/comment the following segment of the code towards the very bottom:
+    ```python
+    port = int(os.environ.get('PORT', 8000))
+    server = HTTPServer(('0.0.0.0', port), Handler)
+    url = f'{port}/index.html'
+    print(f"Serving charts at {url}")
+    webbrowser.open(url)
+    server.serve_forever()
+    ```
+and uncomment this segment of code right after it:
+```python
+server = HTTPServer(('localhost', 8000), Handler)
+url = 'http://localhost:8000/index.html'
+```
+
 Run the local version of the webb-app using:
 
 ```bash
