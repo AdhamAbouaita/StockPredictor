@@ -227,12 +227,6 @@ def main():
     server = HTTPServer(('0.0.0.0', port), Handler)
     url = f'{port}/index.html'
 
-    # and then uncomment the following lines to run locally
-    '''
-    server = HTTPServer(('localhost', 8000), Handler)
-    url = 'http://localhost:8000/index.html'
-    '''
-
     webbrowser.open(url)
     server.serve_forever()
 
